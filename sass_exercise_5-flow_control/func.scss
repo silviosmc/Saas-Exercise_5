@@ -1,0 +1,6 @@
+@function converter ($var) {
+    $result: calc($var / 16);
+    @return $result + rem;
+}
+
+$converterResult: converter(16);

@@ -1,0 +1,117 @@
+@use "var.scss";
+@use "func.scss";
+
+$font-size: func.$converterResult;
+
+@mixin box ($color, $border-color, $font-size) {
+    color: $color;
+    border: 1px solid $border-color;
+    font-size: $font-size;
+}
+
+.text {
+    color: var.$tertiary-color;
+    text-decoration: underline;
+    text-decoration-color: var.$secondary-color;
+}
+
+.container {
+    border: 1px solid var.$primary-color;
+    text-align: center;
+    margin: 10px;
+
+    .title {
+        @extend .text;
+    }
+
+    .subtitle {
+        @extend .text;
+        padding: $font-size;
+        border: 1px solid red;
+        width: fit-content;
+        margin: auto;
+        text-decoration: none;
+    }
+   
+    
+    #main {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px;
+
+        article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &:nth-child(odd) {
+                @include box(var.$secondary-color, var.$tertiary-color, $font-size);
+            }
+
+            &:nth-child(even) {
+                @include box(var.$primary-color, var.$tertiary-color, $font-size);
+            }
+
+            p {
+                padding: 10px;
+            }
+        }
+    }
+
+
+    #footer {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px;
+
+        article {
+            @include box(var.$tertiary-color, var.$secondary-color, 2rem);
+        }
+    }
+
+    .fs-1rem {
+        font-size: $font-size;
+    }
+    .fs-2rem {
+        font-size: calc($font-size * 2);
+    }
+    .fs-3rem {
+        font-size: calc($font-size * 3);
+    }
+
+    .boxesSection {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+        text-align: initial;
+        div {
+            border: 1px solid var.$primary-color;
+            width: 2.8rem;
+            height: 2.8rem;
+
+            @for $box from 1 through 19 {
+                
+                &:nth-child(#{$box}) {
+
+                    @if $box == 10 {
+                        color: var.$primary-color;
+                        background-color: var.$secondary-color;
+                    }
+                    @else {
+                        color: lighten($color: #000000, $amount: calc($box*5));
+                        background-color: darken($color: #ffffff, $amount: calc($box*5));
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
